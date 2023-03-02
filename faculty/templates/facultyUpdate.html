@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{%block title%}
+faculty registration 
+{%endblock title%}
+{%block content%}
+    <div class="container p-3 text-body">
+        <h1 class="text-light"><span class="display-5 ">{{member.name}}</span> details</h1>
+        <form class="text-light" action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="text-center"><input class="button" type="submit" value="Update"></div>
+        </form>
+    </div>
+{%endblock%}

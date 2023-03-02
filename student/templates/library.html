@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{%block title%}
+Add book 
+{%endblock title%}
+{%block content%}
+    <div class="container p-3 text-body">
+        <h1 class="text-light">Library Form</h1>
+        <form action="post" class="text-light" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="text-center"><button class="btn btn-success" type="submit">add book</button></div>
+        </form>
+    </div>
+{%endblock%}

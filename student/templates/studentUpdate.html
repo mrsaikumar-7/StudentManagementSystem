@@ -1,0 +1,29 @@
+
+{% extends 'base.html' %}
+Student Registration
+{%block title%}
+Student data 
+{%endblock title%}
+{%block content%}
+    <div class="container p-3 text-body">
+        <h1 class="text-light"><span class="display-5 ">{{student.studentName}}</span> details</h1>
+        <form method="post" >
+            {% csrf_token%}
+            <input class="form-control" type="text" name='Name' value={{student.studentName}}> <br>
+            <input class="form-control" type="email" name="Mail" value={{student.mail}}> <br>
+            <input class="form-control" type="text" name="Branch" value={{student.branch}}><br>
+            <input class="form-control" type="text" name="Age" value={{student.age}}><br>
+            <input class="form-control" type="date" name="Dob" value={{student.dob|date:'Y-m-d'}} ><br>
+        
+            <div class="container text-light">
+                <input type="radio" name="Gender" value="Male" {% if student.gender == 'Male' %} checked {% endif %}>
+                <label for='male'>Male</label>
+                <input type="radio" name="Gender" value="Female" {% if student.gender == 'Female' %} checked {% endif %}>
+                <label for='female' > Female</label>
+            </div>
+
+            <input class="form-control"  type="password" name="Psw" value="{{ student.password}}"> <br>
+            <div class="text-center"><input class="button" type="submit" value="Update"></div>
+        </form>
+    </div>
+{%endblock%}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{%block title%}
+Student data 
+{%endblock title%}
+
+
+{%block content%}
+
+    <div class="container scrollme" >
+        <table class="table table-resposive table-bordered table-dark">
+            <tr>
+                <th>id</th>
+                <th>Name</th>
+                <th>email</th>
+                <th>branch</th>
+                <th>dob</th>
+                <th>age</th>
+                <th>gender</th>
+                <th>password</th>
+                <th>Edit</th>
+                <th>Delete</th>
+                
+            </tr>
+            {% for obj in data%}
+                <tr>
+                    <td>{{obj.id}}</td>
+                    <td>{{obj.studentName}}</td>
+                    <td>{{obj.mail}}</td>
+                    <td>{{obj.branch}}</td>
+                    <td>{{obj.dob}}</td>
+                    <td>{{obj.age}}</td>
+                    <td>{{obj.gender}}</td>
+                    <td>{{obj.password}}</td>
+                    <td><a href="{% url 'update' obj.id %}" class="btn btn-primary ">Update</a></td>
+                    <td><a href="{% url 'delete' obj.id %}" class="btn btn-danger">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}
