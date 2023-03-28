@@ -29,7 +29,7 @@ def studentData(request):
 
 def studentUpdate(request,uid):
     student = register.objects.get(id=uid)
-    if request.method == 'POST':
+    if request.method =='POST':
         
         student.studentName = request.POST['Name']
         student.mail = request.POST['Mail']
@@ -48,17 +48,24 @@ def studentDelete(request,uid):
     student.delete()
     return redirect('data')
 
-def library(request):
-    fm = libraryForm()
+def addBook(request):
     if request.method == 'POST':
         fm = libraryForm(request.POST,request.FILES)
         if fm.is_valid():
             fm.save()
+            return redirect('books')
         else:
-            return HttpResponse('data is invalid')
-        
+            return HttpResponse('book detials not valid')
+    else:
+        fm = libraryForm(request.POST)  
     return render(request,'library.html',{'form':fm})
 
 def home(request):
    return render(request,'base.html')
+
+def viewBooks(request):
+    data = library.objects.all()
+    for book in data:
+        print(book.image)
+    return render(request,'books.html',{'data':data})
         

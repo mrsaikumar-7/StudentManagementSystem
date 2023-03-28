@@ -16,7 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from student import views
-
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,7 +26,9 @@ urlpatterns = [
     path('student/update/<int:uid>/',views.studentUpdate,name= 'update'),
     path('student/delete/<int:uid>/',views.studentDelete ,name='delete'),
     path('faculty/',include('faculty.urls')),
-    path('student/library/', views.library,name='library'),
-    path("" , views.home,name='home')
+    path('student/addBook/', views.addBook,name='library'),
+    path("" , views.home,name='home'),
+    path("library/boooks",views.viewBooks,name="books"),
     
-]
+    
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

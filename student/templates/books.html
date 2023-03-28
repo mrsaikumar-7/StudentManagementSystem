@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{%block title %}
+Books
+{%endblock title%}
+
+{% block content %}
+  
+
+  <div class="container" style="background:black;">
+      {% for obj in data%}
+      <div class="container p-4 m-4 card bg-dark">
+        <div class="row ">
+          <div class="col-md-3 p-2">
+            <img class="card-img w-auto img-fluid " style="height:200px" src="{{ obj.image.url }}" alt="image not available">
+          </div>
+          <div class="card-body col-md-9 row text-light p-2 ">
+            <div class="card-title">
+              <h1>{{ obj.book_name }}</h1>
+            </div>
+            <p class="lead card-subtitle">Author: {{ obj.book_author }}</p>
+            <p class="lead card-footer">Publication_date: ${{ obj.publication_date }}</p>
+            
+            <!-- <p>{{ book.description }}</p> -->
+          </div>
+        </div>
+      </div>
+
+      {% endfor %}
+
+  </div>
+{% endblock %}
